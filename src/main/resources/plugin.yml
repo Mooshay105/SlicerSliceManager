@@ -1,0 +1,19 @@
+name: SlicerSliceManager
+version: '${project.version}'
+main: net.antlertech.slicerslicemanager.SlicerSliceManager
+api-version: '1.20'
+commands:
+  claim:
+    usage: /<command>
+    description: Claim Slice if not already claimed.
+    permission: slicer.slice.claim
+  approve:
+    usage: /<command>
+    description: Approve a slice.
+    permission: slicer.staff.approve
+
+permissions:
+  slicerslicemanager.staff.bypass.all:
+    description: BYPASS ALL CHECKS DANGER!.
+  slicerslicemanager.staff.bypass.slice:
+    description: Bypass the Slice Claiming System.
