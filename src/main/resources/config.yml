@@ -1,7 +1,3 @@
-# JUST THE API IP "XXX.XXX.XXX.XXX".
-#POST-API: 127.0.0.1
-#GET-API: 127.0.0.1
-
 # Maybe Coming Soon:
 bannedBlocks:
    - 'stickyPiston'
