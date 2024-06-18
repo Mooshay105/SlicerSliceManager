@@ -10,6 +10,7 @@ public class messages {
     private static final String notTheirSliceMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "That is not your slice!";
     private static final String bannedBlockMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "That is an illegal block!";
     private static final String SQLErrorMessage = ChatColor.RED + "" + ChatColor.BOLD + "Hmm... " + ChatColor.GRAY + "There was an error with the SQL database! Please try again!";
+    private static final String yourSliceApprovedMessage = ChatColor.GREEN + "" + ChatColor.BOLD + "YAY! " + ChatColor.GRAY + "Your slice has been approved!";
 
     public static String getSliceClaimedMessage() {
         return sliceClaimedMessage;
@@ -29,12 +30,11 @@ public class messages {
     public static String getPlayerNotAllowedToClaimNewSliceMessage() {
         return playerNotAllowedToClaimNewSliceMessage;
     }
+    public static String getYourSliceApprovedMessage() {
+        return yourSliceApprovedMessage;
+    }
     public static String getApprovedSliceMessage(Player player) {
         String approvedSliceMessage = ChatColor.GREEN + "" + ChatColor.BOLD + "YAY! " + ChatColor.GRAY + "You have approved " + player.getName() + " slice!";
-        return approvedSliceMessage;
-    }
-    public static String getYourSliceApprovedMessage() {
-        String approvedSliceMessage = ChatColor.GREEN + "" + ChatColor.BOLD + "YAY! " + ChatColor.GRAY + "Your slice has been approved!";
         return approvedSliceMessage;
     }
 }
