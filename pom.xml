@@ -6,7 +6,7 @@
 
   <groupId>net.antlertech</groupId>
   <artifactId>SlicerSliceManager</artifactId>
-  <version>1.0-1.20.6-FULL</version>
+  <version>1.0-1.21-FULL</version>
   <packaging>jar</packaging>
 
   <name>SlicerSliceManager</name>
