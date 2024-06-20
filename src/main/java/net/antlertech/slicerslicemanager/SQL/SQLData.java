@@ -1,4 +1,4 @@
-package net.antlertech.slicerslicemanager.models;
+package net.antlertech.slicerslicemanager.SQL;
 
 public class SQLData {
     private static final String host = "localhost";
