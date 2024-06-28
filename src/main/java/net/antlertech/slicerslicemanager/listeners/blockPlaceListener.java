@@ -23,7 +23,7 @@ public class blockPlaceListener implements Listener {
                 p.sendMessage(messages.getBannedBlockMessage());
                 e.setCancelled(true);
             }
-            if (!Objects.equals(playerID, playerUUID.toString())) {
+            if (!Objects.equals(playerID, playerUUID.toString()) || p.hasPermission("slicerslicemanager.staff.bypass.slice")) {
                 p.sendMessage(messages.getNotTheirSliceMessage());
                 e.setCancelled(true);
             }

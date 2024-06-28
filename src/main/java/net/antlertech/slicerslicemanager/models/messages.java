@@ -10,10 +10,22 @@ public class messages {
     private static final String notTheirSliceMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "That is not your slice!";
     private static final String bannedBlockMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "That is an illegal block!";
     private static final String SQLErrorMessage = ChatColor.RED + "" + ChatColor.BOLD + "Hmm... " + ChatColor.GRAY + "There was an error with the SQL database! Please try again!";
+    private static final String errorClaimingSliceMessage = ChatColor.RED + "" + ChatColor.BOLD + "Hmm... " + ChatColor.GRAY + "There was an error claiming your slice! Please try again!";
+    private static final String errorApprovingSliceMessage = ChatColor.RED + "" + ChatColor.BOLD + "Hmm... " + ChatColor.GRAY + "There was an error approving the slice! Please try again!";
     private static final String yourSliceApprovedMessage = ChatColor.GREEN + "" + ChatColor.BOLD + "YAY! " + ChatColor.GRAY + "Your slice has been approved!";
+    private static final String consoleMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "This slice is already claimed!";
 
     public static String getSliceClaimedMessage() {
         return sliceClaimedMessage;
+    }
+    public static String getConsoleMessage() {
+        return consoleMessage;
+    }
+    public static String getErrorClaimingSliceMessage() {
+        return errorClaimingSliceMessage;
+    }
+    public static String getErrorApprovingSliceMessage() {
+        return errorApprovingSliceMessage;
     }
     public static String getSliceIsAlreadyClaimedMessage() {
         return sliceIsAlreadyClaimedMessage;

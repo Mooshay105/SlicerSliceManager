@@ -43,56 +43,72 @@ public class SQLUtil {
         }
     }
 
-    public static void addPlayerIDToDatabase(UUID playerID) {
+    public static boolean addPlayerIDToDatabase(UUID playerID) {
         try {
             String addPlayerIDCommand = "INSERT IGNORE INTO isPlayerAllowedToClaim VALUES ('" + playerID.toString() + "', '1');";
             getStatement().execute(addPlayerIDCommand);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             getLogger().info(messages.getSQLErrorMessage() + "addPlayerIDToDatabaseSQLException");
+            return false;
         }
     }
 
-    public static void approveSlice(UUID playerID) {
+    public static boolean approveSlice(UUID playerID) {
         try {
             String approveSliceCommand = "UPDATE isPlayerAllowedToClaim SET isAllowedToClaim = '1' WHERE playerID = '" + playerID.toString() + "';";
             getStatement().execute(approveSliceCommand);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             getLogger().info(messages.getSQLErrorMessage() + "approveSliceSQLException");
+            return false;
         }
     }
-    public static void setUpSQL() {
+
+    public static boolean setUpSQL() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://" + SQLData.getHost() + ":" + SQLData.getPort() + "/" + SQLData.getDatabase() + "?useSSL=false", SQLData.getUsername(), SQLData.getPassword());
             setConnection(connection);
             setStatement(connection);
-            setupTables();
+            boolean setupTables = setupTables();
+            if (!setupTables) {
+                return false;
+            }
+            return true;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             getLogger().info(messages.getSQLErrorMessage() + "connectClassNotFoundException");
+            return false;
         } catch (SQLException e) {
             e.printStackTrace();
             getLogger().info(messages.getSQLErrorMessage() + "connectSQLException");
+            return false;
         }
     }
-    private static void setupTables() {
+
+    private static boolean setupTables() {
         try {
             getStatement().execute("CREATE TABLE IF NOT EXISTS slices (xpos VARCHAR(5) primary key, playerID VARCHAR(36))");
             getStatement().execute("CREATE TABLE IF NOT EXISTS isPlayerAllowedToClaim (playerID VARCHAR(36) primary key, isAllowedToClaim BOOLEAN)");
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             getLogger().info(messages.getSQLErrorMessage() + "setupTableSQLException");
+            return false;
         }
     }
-    public static void closeSQLConnection() {
+    public static boolean closeSQLConnection() {
         try {
             getConnection().close();
             getStatement().close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             getLogger().info(messages.getSQLErrorMessage() + "closeConnectionAndStatementSQLException");
+            return false;
         }
     }
 }

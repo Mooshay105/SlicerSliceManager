@@ -11,19 +11,27 @@ import net.antlertech.slicerslicemanager.models.messages;
 public class approveCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        Player p = (Player) sender;
-        StringBuilder builder = new StringBuilder();
-        for(int i = 0; i < args.length; i++) {
-            builder.append(args[i]);
-            builder.append(" ");
+        if (sender instanceof Player) {
+            Player p = (Player) sender;
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < args.length; i++) {
+                builder.append(args[i]);
+                builder.append(" ");
+            }
+            String approveTargetInput = builder.toString();
+            approveTargetInput = approveTargetInput.stripTrailing();
+            Player approveTargetPlayerObject = Bukkit.getServer().getPlayer(approveTargetInput);
+            p.sendMessage("Approving " + approveTargetPlayerObject.getName());
+            boolean approved = SQLUtil.approveSlice(approveTargetPlayerObject.getUniqueId());
+            if (!approved) {
+                p.sendMessage(messages.getErrorApprovingSliceMessage());
+                return true;
+            }
+            approveTargetPlayerObject.sendMessage(messages.getYourSliceApprovedMessage());
+            p.sendMessage(messages.getApprovedSliceMessage(approveTargetPlayerObject));
+            return true;
         }
-        String approveTargets = builder.toString();
-        approveTargets = approveTargets.stripTrailing();
-        Player approveTarget = Bukkit.getServer().getPlayer(approveTargets);
-        p.sendMessage("Approving " + approveTarget.getName());
-        SQLUtil.approveSlice(approveTarget.getUniqueId());
-        approveTarget.sendMessage(messages.getYourSliceApprovedMessage());
-        p.sendMessage(messages.getApprovedSliceMessage(approveTarget));
+        sender.sendMessage(messages.getConsoleMessage());
         return true;
     }
 }

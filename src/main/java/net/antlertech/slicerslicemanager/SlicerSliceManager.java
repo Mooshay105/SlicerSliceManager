@@ -5,6 +5,7 @@ import net.antlertech.slicerslicemanager.commands.claimCommand;
 import net.antlertech.slicerslicemanager.listeners.blockPlaceListener;
 import net.antlertech.slicerslicemanager.listeners.blockRemoveListener;
 import net.antlertech.slicerslicemanager.listeners.joinListener;
+import net.antlertech.slicerslicemanager.SQL.SQLData;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import static net.antlertech.slicerslicemanager.SQL.SQLUtil.*;
@@ -25,13 +26,19 @@ public final class SlicerSliceManager extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new joinListener(), this);
         getCommand("claim").setExecutor(new claimCommand());
         getCommand("approve").setExecutor(new approveCommand());
-        setUpSQL();
+        boolean setUpSQL = setUpSQL();
+        if (!setUpSQL) {
+            getLogger().info("[ERROR]: Unable to connect to the SQL Database!");
+        }
         getLogger().info("[INFO]: Slicer Slice Manager Has Started!");
     }
 
     @Override
     public void onDisable() {
-        closeSQLConnection();
+        boolean closeSQLConnection = closeSQLConnection();
+        if (!closeSQLConnection) {
+            getLogger().info("[ERROR]: Unable to close the SQL Connection!");
+        }
         getLogger().info("[INFO]: Slicer Slice Manager Has Stopped!");
     }
 

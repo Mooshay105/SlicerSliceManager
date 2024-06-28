@@ -17,7 +17,7 @@ public class blockRemoveListener implements Listener {
         int xpos = (int) e.getBlock().getLocation().getX();
         if (!p.hasPermission("slicerslicemanager.staff.bypass.all")) {
             String playerID = SQLUtil.getPlayerIDByXpos(String.valueOf(xpos));
-            if (!Objects.equals(playerID, playerUUID.toString())) {
+            if (!Objects.equals(playerID, playerUUID.toString()) || p.hasPermission("slicerslicemanager.staff.bypass.slice")) {
                 p.sendMessage(messages.getNotTheirSliceMessage());
                 e.setCancelled(true);
             }
