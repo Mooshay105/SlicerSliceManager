@@ -17,8 +17,7 @@ public class messages {
     private static final String errorApprovingSliceMessage = ChatColor.RED + "" + ChatColor.BOLD + "Hmm... " + ChatColor.GRAY + "There was an error approving the slice! Please try again!";
 
     public static String getApprovedSliceMessage(Player player) {
-        String approvedSliceMessage = ChatColor.GREEN + "" + ChatColor.BOLD + "YAY! " + ChatColor.GRAY + "You have approved " + player.getName() + " slice!";
-        return approvedSliceMessage;
+        return ChatColor.GREEN + "" + ChatColor.BOLD + "YAY! " + ChatColor.GRAY + "You have approved " + player.getName() + " slice!";
     }
     public static String getYourSliceApprovedMessage() {
         return yourSliceApprovedMessage;
