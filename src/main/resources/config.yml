@@ -1,1 +1,5 @@
-password: 'SlicerSlices01!'
+host: 'localhost'
+port: 3306
+database: 'SlicesDatabase'
+username: ''
+password: ''
