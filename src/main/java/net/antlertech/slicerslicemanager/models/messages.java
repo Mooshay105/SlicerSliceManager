@@ -12,6 +12,7 @@ public class messages {
     private static final String bannedBlockMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "That is an illegal block!";
     private static final String consoleMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "Do Not Run This Command As Console!";
     private static final String noUserSpecifiedMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "You need to specify a user!";
+    private static final String playerNotFoundMessage = ChatColor.RED + "" + ChatColor.BOLD + "HEY! " + ChatColor.GRAY + "That player is not online!";
     private static final String SQLErrorMessage = ChatColor.RED + "" + ChatColor.BOLD + "Hmm... " + ChatColor.GRAY + "There was an error with the SQL database! Please try again!";
     private static final String errorClaimingSliceMessage = ChatColor.RED + "" + ChatColor.BOLD + "Hmm... " + ChatColor.GRAY + "There was an error claiming your slice! Please try again!";
     private static final String errorApprovingSliceMessage = ChatColor.RED + "" + ChatColor.BOLD + "Hmm... " + ChatColor.GRAY + "There was an error approving the slice! Please try again!";
@@ -42,6 +43,9 @@ public class messages {
     }
     public static String getNoUserSpecifiedMessage() {
         return noUserSpecifiedMessage;
+    }
+    public static String getPlayerNotFoundMessage() {
+        return playerNotFoundMessage;
     }
     public static String getSQLErrorMessage() {
         return SQLErrorMessage;

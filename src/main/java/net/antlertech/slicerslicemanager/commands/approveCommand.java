@@ -3,7 +3,6 @@ package net.antlertech.slicerslicemanager.commands;
 import net.antlertech.slicerslicemanager.SQL.SQLUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -23,7 +22,11 @@ public class approveCommand implements CommandExecutor {
         }
         String approveTargetInput = builder.toString();
         approveTargetInput = approveTargetInput.stripTrailing();
-        Player approveTargetPlayerObject = Bukkit.getServer().getPlayer(approveTargetInput);
+        Player approveTargetPlayerObject = Bukkit.getServer().getPlayerExact(approveTargetInput);
+        if (approveTargetPlayerObject == null) {
+            sender.sendMessage(messages.getPlayerNotFoundMessage());
+            return true;
+        }
         sender.sendMessage("Approving " + approveTargetPlayerObject.getName());
         boolean approved = SQLUtil.approveSlice(approveTargetPlayerObject.getUniqueId());
         if (!approved) {
