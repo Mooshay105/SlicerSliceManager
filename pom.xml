@@ -6,7 +6,7 @@
 
   <groupId>net.antlertech</groupId>
   <artifactId>SlicerSliceManager</artifactId>
-  <version>1.21-Beautiful-Bellbird</version>
+  <version>1.21.1-Beautiful-Bellbird</version>
   <packaging>jar</packaging>
 
   <name>SlicerSliceManager</name>
