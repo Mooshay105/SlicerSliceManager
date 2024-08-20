@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import net.antlertech.slicerslicemanager.models.messages;
+import java.sql.SQLException;
 
 public class approveCommand implements CommandExecutor {
     @Override
@@ -19,17 +20,16 @@ public class approveCommand implements CommandExecutor {
         for (int i = 0; i < args.length; i++) {
             builder.append(args[i]);
             builder.append(" ");
-        }
-        String approveTargetInput = builder.toString();
-        approveTargetInput = approveTargetInput.stripTrailing();
-        Player approveTargetPlayerObject = Bukkit.getServer().getPlayerExact(approveTargetInput);
+        };
+        Player approveTargetPlayerObject = Bukkit.getServer().getPlayerExact(builder.toString().stripTrailing());
         if (approveTargetPlayerObject == null) {
             sender.sendMessage(messages.getPlayerNotFoundMessage());
             return true;
         }
         sender.sendMessage("Approving " + approveTargetPlayerObject.getName());
-        boolean approved = SQLUtil.approveSlice(approveTargetPlayerObject.getUniqueId());
-        if (!approved) {
+        try {
+            SQLUtil.approveSlice(approveTargetPlayerObject.getUniqueId());
+        } catch (SQLException e) {
             sender.sendMessage(messages.getErrorApprovingSliceMessage());
             return true;
         }

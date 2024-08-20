@@ -4,7 +4,7 @@ import net.antlertech.slicerslicemanager.models.messages;
 import java.sql.*;
 import java.util.UUID;
 
-import static net.antlertech.slicerslicemanager.SQL.SQLConnection.*;
+import static net.antlertech.slicerslicemanager.SQL.SQLData.*;
 import static org.bukkit.Bukkit.getLogger;
 
 public class SQLUtil {
@@ -40,16 +40,9 @@ public class SQLUtil {
         getStatement().execute(addPlayerIDCommand);
     }
 
-    public static boolean approveSlice(UUID playerID) {
-        try {
-            String approveSliceCommand = "UPDATE isPlayerAllowedToClaim SET isAllowedToClaim = '1' WHERE playerID = '" + playerID.toString() + "';";
-            getStatement().execute(approveSliceCommand);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            getLogger().info(messages.getSQLErrorMessage() + "approveSliceSQLException");
-            return false;
-        }
+    public static void approveSlice(UUID playerID) throws SQLException {
+        String approveSliceCommand = "UPDATE isPlayerAllowedToClaim SET isAllowedToClaim = '1' WHERE playerID = '" + playerID.toString() + "';";
+        getStatement().execute(approveSliceCommand);
     }
 
     public static void setUpSQL() throws ClassNotFoundException, SQLException {
